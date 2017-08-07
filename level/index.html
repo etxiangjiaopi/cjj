@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="level">
+
+</div>
+<script src="../lib/jquery.min.js"></script>
+<script src="level.js"></script>
+<script>
+    $(function(){
+        initData();
+        initEvent();
+    });
+    function initData(){
+        $.ajax({
+            url: "level.json",
+            success: function(data){
+                console.log(data);
+            }
+        });
+        var level = new Level({
+            container: "level",
+            level: [{
+                name: "国家"
+            },{
+                name: "省份"
+            },{
+                name: "城市"
+            }]
+        });
+    }
+    function initEvent(){
+
+    }
+</script>
+</body>
+</html>
