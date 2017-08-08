@@ -5,9 +5,9 @@
     <title>地址</title>
 </head>
 <body>
-<select name="" id="province"></select>
-<select name="" id="city"></select>
-<select name="" id="street"></select>
+<select name="" id="country"></select>
+<select name="" id="provice"></select>
+<!--<select name="" id="city"></select>-->
 <script src="../lib/jquery.min.js"></script>
 <script src="area.js"></script>
 <script>
@@ -16,7 +16,58 @@
         initEvent();
     });
     function initData(){
-
+        var cas = new Cascade({
+            con: "container",
+            levels: [{
+                name: "country",
+                id: "country",
+                val: "0",
+                loadData: function(level,name,parentId){
+                    console.log(level,name,parentId);
+                    var arr = [];
+                    $.ajax({
+                        url: "country.json",
+                        async: false,
+                        success: function(data){
+                            arr = data;
+                        }
+                    });
+                    return arr;
+                }
+            },{
+                name: "provice",
+                id: "provice",
+                val: "1",
+                loadData: function(level,name,parentId){
+                    console.log(level,name,parentId);
+                    var arr = [];
+                    $.ajax({
+                        url: "province.json",
+                        async: false,
+                        success: function(data){
+                            arr = data;
+                        }
+                    });
+                    return arr;
+                }
+            },{
+                name: "city",
+                id: "city",
+                val: "1",
+                loadData: function(level,name,parentId){
+                    console.log(level,name,parentId);
+                    var arr = [];
+                    $.ajax({
+                        url: "city.json",
+                        async: false,
+                        success: function(data){
+                            arr = data;
+                        }
+                    });
+                    return arr;
+                }
+            }]
+        });
     }
     function initEvent(){
 
